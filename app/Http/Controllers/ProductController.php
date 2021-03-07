@@ -137,9 +137,15 @@ class ProductController extends Controller
 
 	public function details($id){
 		$product = Product::select('products.*')->where('id', $id)->first();
+		if(empty($product)){
+			return response()->json([
+				'success' => false,
+				'message' => 'Invalid Product ID.'
+			], 400);
+		}
 		return response()->json([
 			'success' => true,
-			'products' => $product == null? 'Product is not available':$product,
+			'products' => $product,
 			'base_url' => url('/').'/public/uploads/'
 		],200);
 	}
@@ -218,7 +224,7 @@ class ProductController extends Controller
 			return response()->json([
 				'success' => true,
 				'message' => "Product updated successfully!!"
-			], 400);
+			], 200);
 		}else{
 			//If block image already existing it is deleted previous block image
 			$filePath = public_path() . '/uploads/'. $fileName;
