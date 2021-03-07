@@ -99,7 +99,7 @@ class ProductController extends Controller
 		return response()->json([
 			'success' => true,
 			'products' => $products == null? []:$products,
-			'base_url' => url('/').'/public/uploads/'
+			'base_url' => url('/').'/uploads/'
 		],200);
 	}
 
@@ -146,7 +146,7 @@ class ProductController extends Controller
 		return response()->json([
 			'success' => true,
 			'products' => $product,
-			'base_url' => url('/').'/public/uploads/'
+			'base_url' => url('/').'/uploads/'
 		],200);
 	}
 
